@@ -64,12 +64,30 @@
         </div>
       </div>
     </div>
+    <div class="newDate">
+      <h1><center>Noël</center></h1>
+      <div class="date">
+        <div class="t">
+          <div class="dayN"></div><span>Jours</span>
+        </div>
+        <div class="t">
+          <div class="hourN"></div><span>Heures</span>
+        </div>
+        <div class="t">
+          <div class="minutesN"></div><span>Minutes</span>
+        </div>
+        <div class="t">
+          <div class="secondesN"></div><span>Secondes</span>
+        </div>
+      </div>
+    </div>
 
     
     <script type="text/javascript">
       const date = document.querySelector('.date');
 
       let countDate = new Date('jan 1, 2021 00:00:00').getTime();
+      let countDateNoel = new Date('dec 25, 2020 00:00:00').getTime();
 
       function newYear() {
         const now = new Date().getTime();
@@ -94,6 +112,31 @@
       }
       setInterval(function(){
         newYear();
+      },1000);
+
+      function noel() {
+        const now = new Date().getTime();
+        const gap = countDateNoel - now;
+        // console.log(gap);
+
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const d = Math.floor(gap / (day));
+        const h = Math.floor((gap % (day)) / (hour));
+        const m = Math.floor((gap % (hour)) / (minute));
+        const s = Math.floor((gap % (minute)) / (second));
+
+        document.querySelector('.dayN').innerHTML = d; 
+        document.querySelector('.hourN').innerHTML = h;
+        document.querySelector('.minutesN').innerHTML = m;
+        document.querySelector('.secondesN').innerHTML = s;
+        // console.log(d + ' jour ' + h + ' heures '+ m + ' minutes ' + s + ' secondes ');
+      }
+      setInterval(function(){
+        noel();
       },1000);
     </script>
   </body>
