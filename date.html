@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      *{
+         box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+       }
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Arial 14px;
+        background-color: #333;
+        color: rgba(255,255,255);
+      }
+      
+      .date{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .t{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding:15px;
+        font-size:25px;
+      }.t span{
+        font-size: 16px;
+        padding:10px 3px;
+      }
+      .newDate{
+        width:100%;
+        margin: 0 auto;
+        padding-top:20px;
+      }
+      h1{
+        padding:20px 
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="newDate">
+      <h1><center>2021</center></h1>
+      <div class="date">
+        <div class="t">
+          <div class="day"></div><span>Jours</span>
+        </div>
+        <div class="t">
+          <div class="hour"></div><span>Heures</span>
+        </div>
+        <div class="t">
+          <div class="minutes"></div><span>Minutes</span>
+        </div>
+        <div class="t">
+          <div class="secondes"></div><span>Secondes</span>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript">
+      const date = document.querySelector('.date');
+
+      let countDate = new Date('jan 1, 2021 00:00:00').getTime();
+
+      function newYear() {
+        const now = new Date().getTime();
+        const gap = countDate - now;
+        // console.log(gap);
+
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const d = Math.floor(gap / (day));
+        const h = Math.floor((gap % (day)) / (hour));
+        const m = Math.floor((gap % (hour)) / (minute));
+        const s = Math.floor((gap % (minute)) / (second));
+
+        document.querySelector('.day').innerHTML = d; 
+        document.querySelector('.hour').innerHTML = h;
+        document.querySelector('.minutes').innerHTML = m;
+        document.querySelector('.secondes').innerHTML = s;
+        // console.log(d + ' jour ' + h + ' heures '+ m + ' minutes ' + s + ' secondes ');
+      }
+      setInterval(function(){
+        newYear();
+      },1000);
+    </script>
+  </body>
+</html>
